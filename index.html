@@ -39,6 +39,7 @@
 
         .container {
             max-width: 1200px;
+            text-align: center;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -176,6 +177,9 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
+            grid-template-columns: 1fr;
+            max-width: 350px;
+            margin: 0 auto;
         }
 
         .listing-card {
@@ -210,7 +214,9 @@
         /* Neighborhoods */
         .neighborhood-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 1fr;
+            max-width: 250px;
+            margin: 0 auto;
             gap: 20px;
             list-style: none;
         }
@@ -234,7 +240,7 @@
         form {
             display: grid;
             gap: 20px;
-            max-width: 500px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
@@ -338,12 +344,147 @@
                 margin-bottom: 20px;
             }
         }
+
+        /* Header styles */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin-bottom: 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 0;
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .hamburger {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: #fff;
+                position: relative;
+                transition: background-color 0.3s;
+            }
+
+            .hamburger::before,
+            .hamburger::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                transition: transform 0.3s;
+            }
+
+            .hamburger::before {
+                transform: translateY(-8px);
+            }
+
+            .hamburger::after {
+                transform: translateY(8px);
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            main {
+                padding-top: 60px;
+            }
+
+            #hero {
+                padding: 100px 0 60px;
+            }
+
+            section {
+                padding: 60px 0 40px;
+            }
+
+            section h2 {
+                padding-top: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <h1><i class="fas fa-home"></i> Columbus Millennial Homes</h1>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
             <nav>
                 <ul>
                     <li><a href="#about">About</a></li>
@@ -365,8 +506,15 @@
         </section>
 
         <section id="about" class="container">
-            <h2>About Us</h2>
-            <p>We specialize in helping millennials find their dream homes in Columbus. Our team understands your unique needs and preferences, from eco-friendly features to proximity to trendy cafes and co-working spaces.</p>
+            <h2>About Columbus Millennial Homes</h2>
+            <p>At Columbus Millennial Homes, we understand the unique needs of young professionals and first-time homebuyers. Our mission is to help you find the perfect living space that aligns with your lifestyle, budget, and values.</p>
+            <p>We specialize in:</p>
+            <ul>
+                <li>Urban apartments with modern amenities</li>
+                <li>Eco-friendly homes for the environmentally conscious</li>
+                <li>Affordable properties in up-and-coming neighborhoods</li>
+                <li>Homes near public transportation and bike-friendly areas</li>
+            </ul>
         </section>
 
         <section id="listings" class="container">
@@ -376,33 +524,116 @@
                     <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBhcnRtZW50fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Modern apartment in Short North">
                     <h3>Modern Short North Apartment</h3>
                     <p>$250,000 | 2 bed | 2 bath</p>
+                    <p>Sleek, urban living in the heart of Columbus' arts district. Walk to galleries, restaurants, and shops.</p>
                 </div>
                 <div class="listing-card">
                     <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG91c2UlMjBleHRlcmlvcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Charming home in German Village">
                     <h3>Charming German Village Home</h3>
                     <p>$350,000 | 3 bed | 2 bath</p>
+                    <p>Historic charm meets modern convenience in this beautifully renovated German Village property.</p>
                 </div>
                 <div class="listing-card">
                     <img src="https://images.unsplash.com/photo-1567496898669-ee935f5f647a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvbmRvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Eco-friendly condo in Clintonville">
                     <h3>Eco-friendly Clintonville Condo</h3>
                     <p>$200,000 | 1 bed | 1 bath</p>
+                    <p>Sustainable living in a vibrant community. Solar panels, energy-efficient appliances, and a community garden.</p>
                 </div>
             </div>
         </section>
 
         <section id="neighborhoods" class="container">
-            <h2>Popular Neighborhoods</h2>
+            <h2>Popular Columbus Neighborhoods</h2>
             <ul class="neighborhood-list">
                 <li>Short North</li>
                 <li>German Village</li>
                 <li>Clintonville</li>
                 <li>Grandview Heights</li>
+                <li>Victorian Village</li>
+                <li>Italian Village</li>
+                <li>Olde Towne East</li>
+                <li>Downtown Columbus</li>
             </ul>
+        </section>
+
+        <section id="features" class="container">
+            <h2>Why Choose Columbus for Your Home?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Thriving Job Market</h3>
+                    <p>Columbus boasts a diverse economy with opportunities in tech, healthcare, education, and more.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Foodie Paradise</h3>
+                    <p>From food trucks to fine dining, Columbus offers a vibrant culinary scene for every palate.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-tree"></i>
+                    <h3>Green Spaces</h3>
+                    <p>Enjoy numerous parks, bike trails, and outdoor recreational areas throughout the city.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Educational Hub</h3>
+                    <p>Home to Ohio State University and several other colleges, perfect for lifelong learners.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-item">
+                    <p>"Columbus Millennial Homes helped me find the perfect starter home in Clintonville. I couldn't be happier!"</p>
+                    <p class="testimonial-author">- Sarah J., First-time Homebuyer</p>
+                </div>
+                <div class="testimonial-item">
+                    <p>"The team understood exactly what I was looking for in an eco-friendly apartment. They made the process so easy."</p>
+                    <p class="testimonial-author">- Mike T., Environmental Consultant</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>What's the average home price in Columbus?</h3>
+                    <p>The average home price in Columbus varies by neighborhood, but generally ranges from $200,000 to $400,000 for millennial-friendly properties.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Are there good public transportation options?</h3>
+                    <p>Yes, Columbus offers bus services, bike-sharing programs, and is continually improving its public transit infrastructure.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What's the process for first-time homebuyers?</h3>
+                    <p>We guide you through every step, from securing financing to closing on your dream home. Our team specializes in helping first-time buyers navigate the process.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="container">
+            <h2>Latest from Our Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-item">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="First-time homebuyer tips">
+                    <h3>5 Tips for First-Time Homebuyers in Columbus</h3>
+                    <p>Navigate the Columbus real estate market with confidence using these expert tips...</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+                <div class="blog-item">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZWNvJTIwZnJpZW5kbHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Eco-friendly home features">
+                    <h3>Top Eco-Friendly Features in Modern Columbus Homes</h3>
+                    <p>Discover the latest sustainable home features that are good for the environment and your wallet...</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
         </section>
 
         <section id="contact" class="container">
             <h2>Contact Us</h2>
-            <p>Ready to find your dream home? Get in touch with our millennial-friendly real estate experts today!</p>
+            <p>Ready to find your dream home in Columbus? Get in touch with our millennial-friendly real estate experts today!</p>
             <form>
                 <input type="text" placeholder="Name" required>
                 <input type="email" placeholder="Email" required>
@@ -415,10 +646,23 @@
     <footer>
         <div class="container">
             <p>&copy; 2023 Columbus Millennial Homes. All rights reserved.</p>
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
         </div>
     </footer>
 
     <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+
     window.addEventListener('scroll', function() {
         const header = document.querySelector('header');
         header.classList.toggle('scrolled', window.scrollY > 50);
