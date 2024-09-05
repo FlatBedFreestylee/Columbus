@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://flatbedfreestylee.github.io/Columbus/sitemap.xml
